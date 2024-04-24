@@ -1,14 +1,26 @@
 import 'package:flutter/material.dart';
+import 'package:primeirojeto/aula.dart';
 
-class telaMain extends StatefulWidget {
-  const telaMain({ super.key });
 
-  @override
-  State<telaMain> createState() => _TelaMainState();
+main() {
+  runApp(MyApp());
 }
-String? text; 
-class _TelaMainState extends State<telaMain> {
-  
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+    
+      home: Scaffold(
+        appBar: AppBar(backgroundColor: Colors.blueGrey, title: Text("QUADRLE"),centerTitle: true),
+        body: MyLayout()),
+    );
+  }
+}
+
+
+class MyLayout extends StatelessWidget {
+
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -18,19 +30,17 @@ class _TelaMainState extends State<telaMain> {
           child: Padding(
             padding: EdgeInsets.all(23.0),
             child: Column( mainAxisAlignment: MainAxisAlignment.center,
-            children: [ SizedBox(child:
-              SizedBox(width: 800,height: 200,child: Image(image: AssetImage('assets/images/ead-unifor-novo.png'),alignment: Alignment.topCenter,),
-              )
-              ),SizedBox(width: 500,child:TextField(onChanged:(value) {
-                text = value;
-              },decoration: InputDecoration(labelText: "Resposta",border: OutlineInputBorder()), ))
+            children: [ 
+              ElevatedButton.icon(onPressed: (){
+                
+                Navigator.push(context,MaterialPageRoute(builder: (context)=> telaMain()));
+              }, icon: Icon(Icons.play_arrow) ,label: Text("Jogar"), ),
+              OutlinedButton.icon(onPressed: (){
+                testAlert(context);
+              }
+                  ,label: Text("Como Jogar"),icon: Icon(Icons.question_mark),)
 
 
-              
-                
-                
-              
-              
               
                 
                 
@@ -42,4 +52,31 @@ class _TelaMainState extends State<telaMain> {
         ),
       ),
     );
-  }}
+  }
+}
+void testAlert(BuildContext context) {
+  Widget okButton = TextButton(
+    child: Text("OK"),
+    onPressed: () {Navigator.pop(context);},
+  );
+      AlertDialog alert = AlertDialog(
+    title: Text("Como Jogar?"),
+    content: Text("Você será mostrado parte de diferentes obras presentes no espaço cultural, seu trabalho é encontrá-las e inserir seus titulos na caixa de texto abaixo"),
+    actions: [
+      okButton,
+    ],
+  );
+
+  // show the dialog
+  showDialog(
+    context: context,
+    builder: (BuildContext context) {
+      return alert;
+    },
+  );
+}
+  
+
+
+
+
