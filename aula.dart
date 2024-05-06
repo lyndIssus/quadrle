@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:primeirojeto/main.dart';
 
 class telaMain extends StatefulWidget {
   const telaMain({ super.key });
@@ -8,14 +9,16 @@ class telaMain extends StatefulWidget {
   @override
   State<telaMain> createState() => _TelaMainState();
 }
+var vidas = 3;
 var pontuacao = 0;
 var imgAtual = 0;
-var answers = [["unifor","Unifor"],["nice","Nice"]];
+var answers = [["unifor","Unifor"],["nice","Nice"],["Relativity","relativity"]];
 String? text; 
 class _TelaMainState extends State<telaMain> {
   List<AssetImage> assetImages = [
     const AssetImage('assets/images/ead-unifor-novo.png'),
-    const AssetImage("assets/images/monalsa.jpg")
+    const AssetImage("assets/images/monalsa.jpg"),
+    const AssetImage("assets/images/Escher's_Relativity.jpg")
   ];
   @override
   Widget build(BuildContext context) {
@@ -25,8 +28,8 @@ class _TelaMainState extends State<telaMain> {
         body:  Center(
           child: Padding(
             padding: EdgeInsets.all(23.0),
-            child: Column( mainAxisAlignment: MainAxisAlignment.center,
-            children: [ Text("Pontuação: ${pontuacao}" ),SizedBox(child:
+            child: Column(mainAxisAlignment: MainAxisAlignment.center,
+            children: [ Text("Vidas: ${vidas}"),Text("Pontuação: ${pontuacao}" ),SizedBox(child:
               SizedBox(width: 800,height: 200,child: Image(image: assetImages[imgAtual],alignment: Alignment.topCenter,),
               )
               ),SizedBox(width: 500,child:TextField(onChanged:(value) {
@@ -34,7 +37,17 @@ class _TelaMainState extends State<telaMain> {
               },decoration: InputDecoration(labelText: "Resposta",border: OutlineInputBorder()), )),
               OutlinedButton(onPressed: (){
                   if(!verify()){
-                    print("Errou");
+                    setState(() {
+                      vidas-=1;
+                      imgAtual = Random().nextInt(assetImages.length);
+                      if(vidas == 0){
+                        vidas = 3;
+                        pontuacao = 0;
+                        Navigator.pop(context);
+                        Navigator.push(context,MaterialPageRoute(builder: (context)=> MyApp()));
+                        
+                      }
+                    });
                   }else{
                     
                     setState(() {
