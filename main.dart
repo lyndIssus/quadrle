@@ -11,7 +11,6 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
     
       home: Scaffold(
-        appBar: AppBar(backgroundColor: Colors.blueGrey, title: Text("QUADRLE"),centerTitle: true),
         body: MyLayout()),
     );
   }
@@ -30,7 +29,7 @@ class MyLayout extends StatelessWidget {
           child: Padding(
             padding: EdgeInsets.all(23.0),
             child: Column( mainAxisAlignment: MainAxisAlignment.center,
-            children: [ 
+            children: [ Text("QUADRLE",style: TextStyle(),),
               ElevatedButton.icon(onPressed: (){
                 
                 Navigator.push(context,MaterialPageRoute(builder: (context)=> telaMain()));
