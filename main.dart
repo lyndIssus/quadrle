@@ -25,11 +25,16 @@ class MyLayout extends StatelessWidget {
     return MaterialApp(
       home:Scaffold(
         
-        body:  Center(
+        body: Container(decoration: BoxDecoration(
+          gradient: LinearGradient(begin: Alignment.topLeft, end: Alignment.bottomRight, colors: [
+            Color.fromARGB(171, 6, 201, 255),
+            Color.fromARGB(155, 200, 59, 225)])
+        ) ,child: 
+        Center(
           child: Padding(
             padding: EdgeInsets.all(23.0),
             child: Column( mainAxisAlignment: MainAxisAlignment.center,
-            children: [ Text("QUADRLE",style: TextStyle(),),
+            children: [ Text("QUADRLE",style: TextStyle(fontSize: 80),),
               ElevatedButton.icon(onPressed: (){
                 
                 Navigator.push(context,MaterialPageRoute(builder: (context)=> telaMain()));
@@ -53,7 +58,7 @@ class MyLayout extends StatelessWidget {
             ],
           ),
           )
-        ),
+        )),
       ),
     );
   }
