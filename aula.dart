@@ -20,16 +20,26 @@ class _TelaMainState extends State<telaMain> {
     const AssetImage("assets/images/monalsa.jpg"),
     const AssetImage("assets/images/Escher's_Relativity.jpg")
   ];
+  List iconNumbers= [
+    [Icon(Icons.favorite,color: Colors.red,),Icon(Icons.favorite,color: Colors.grey),Icon(Icons.favorite,color: Colors.grey)],
+    [Icon(Icons.favorite,color: Colors.red,), Icon(Icons.favorite,color: Colors.red),Icon(Icons.favorite,color: Colors.grey)],
+    [Icon(Icons.favorite,color: Colors.red,), Icon(Icons.favorite,color: Colors.red), Icon(Icons.favorite,color: Colors.red)]
+  ];
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       home:Scaffold(
         
-        body:  Center(
+        body: Container( decoration: BoxDecoration(
+          gradient: LinearGradient(begin: Alignment.topLeft, end: Alignment.bottomRight, colors: [
+            Color.fromARGB(171, 6, 201, 255),
+            Color.fromARGB(155, 200, 59, 225)])
+        ) ,child: Center(
           child: Padding(
             padding: EdgeInsets.all(23.0),
             child: Column(mainAxisAlignment: MainAxisAlignment.center,
-            children: [ Text("Vidas: ${vidas}"),Text("Pontuação: ${pontuacao}" ),SizedBox(child:
+            children: [Row(mainAxisAlignment: MainAxisAlignment.center,children: iconNumbers[vidas-1]) 
+              ,Text("Vidas: ${vidas}"),Text("Pontuação: ${pontuacao}" ),SizedBox(child:
               SizedBox(width: 800,height: 200,child: Image(image: assetImages[imgAtual],alignment: Alignment.topCenter,),
               )
               ),SizedBox(width: 500,child:TextField(onChanged:(value) {
@@ -66,7 +76,7 @@ class _TelaMainState extends State<telaMain> {
             ],
           ),
           )
-        ),
+        ),)
       ),
     );
   }}
