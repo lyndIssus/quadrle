@@ -1,11 +1,12 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:primeirojeto/main.dart';
+import 'package:quadrle/fimjogo.dart';
+import 'package:quadrle/main.dart';
 
 class telaMain extends StatefulWidget {
   const telaMain({ super.key });
-
+  
   @override
   State<telaMain> createState() => _TelaMainState();
 }
@@ -42,19 +43,26 @@ class _TelaMainState extends State<telaMain> {
               ,Text("Vidas: ${vidas}"),Text("Pontuação: ${pontuacao}" ),SizedBox(child:
               SizedBox(width: 800,height: 200,child: Image(image: assetImages[imgAtual],alignment: Alignment.topCenter,),
               )
-              ),SizedBox(width: 500,child:TextField(onChanged:(value) {
+              ),SizedBox(width: 500, child: Text("???"),)
+              ,SizedBox(width: 500,child:TextField(onChanged:(value) {
                 text = value;
               },decoration: InputDecoration(labelText: "Resposta",border: OutlineInputBorder()), )),
               OutlinedButton(onPressed: (){
                   if(!verify()){
                     setState(() {
                       vidas-=1;
+
                       imgAtual = Random().nextInt(assetImages.length);
+
                       if(vidas == 0){
-                        vidas = 3;
+                        var data0 = pontuacao;
+                        var data1 = vidas;
                         pontuacao = 0;
+                        vidas = 3;
+                        List data = [data0,(3-data1)];
+                        
                         Navigator.pop(context);
-                        Navigator.push(context,MaterialPageRoute(builder: (context)=> MyApp()));
+                        Navigator.push(context,MaterialPageRoute(builder: (context)=> ScreenTwo(data: data)));
                         
                       }
                     });
