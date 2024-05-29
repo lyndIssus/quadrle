@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:primeirojeto/aula.dart';
+import 'package:quadrle/aula.dart';
 
 
 main() {
@@ -85,7 +85,6 @@ void testAlert(BuildContext context) {
   );
 }
   
-
 
 
 
