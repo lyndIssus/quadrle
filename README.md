@@ -1,0 +1,1 @@
+To add a new item to the question list you must add the image's name to the image names array and import it as dart requires, and to implement the response you index the answer to it in the same array position as the image itself
